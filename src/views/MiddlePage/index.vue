@@ -36,48 +36,46 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import Iconv from "iconv-lite";
 import UseClipboard from "vue-clipboard3";
+import { reactive } from "vue";
+import { Toast } from "vant";
 import "vant/es/toast/style";
 
 const { toClipboard } = UseClipboard();
 
 export default {
-  data() {
-    return {
+  setup() {
+    const data = reactive({
       tkl: "",
       picture: "",
       pay: "",
       bonus: "",
       title: "",
       url: "",
-    };
+    });
+    return data;
   },
   components: {},
   mounted() {
     const url = decodeURI(window.location.href);
     const paraString = url.substring(url.indexOf("key=") + 4, url.length);
     if (paraString.length) {
-      const base64 = atob(paraString);
-      Iconv.skipDecodeWarning = true;
+      const base64 = atob(paraString) as any;
+      let iconv = Iconv as any;
+      iconv.skipDecodeWarning = true;
       const gbk = Iconv.decode(base64, "gbk");
       const params = JSON.parse(gbk);
-      console.log(params);
-      console.log(params["picture"]);
+
       this.picture = params["picture"];
       this.title = params["Title"];
       this.pay = params["Pay"];
       this.bonus = params["bonus"];
+      this.url = params["url"];
 
       const number = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
       this.tkl = `CZ${number} ￥${params["tkl"]}￥/`;
-
-      this.url = params["url"];
-      // this.url = `https://s.tb.cn/${this.tkl}`;
-      this.url = "https://s.tb.cn/h.Udmv2ot";
-      // this.url = "https://www.baidu.com";
-      // console.log(`url = ${this.url}`);
     }
 
     document.addEventListener("touchstart", function (event) {
@@ -120,17 +118,18 @@ export default {
   methods: {
     async copyTKL() {
       await toClipboard(this.tkl);
-      this.$toast({
+      Toast({
         message: "复制成功\n快去打开淘宝",
         icon: "https://qiniu.blockss.com/taobao.png",
+        duration: 2000,
       });
     },
     randomCoding() {
-      const result = [];
+      const result: never[] = [];
       const n = 2;
       for (let i = 0; i < n; i++) {
         const ranNum = Math.ceil(Math.random() * 25);
-        result.push(String.fromCharCode(65 + ranNum));
+        result.push(String.fromCharCode(65 + ranNum) as never);
       }
       return result.join("");
     },

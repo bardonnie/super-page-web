@@ -1,9 +1,9 @@
 /*
  * @Author: Donnie
  * @LastEditors: Donnie
- * @Date: 2022-08-29 18:15:12
- * @LastEditTime: 2022-10-10 10:55:28
- * @FilePath: /my-page/vite.config.ts
+ * @Date: 2022-10-10 14:46:20
+ * @LastEditTime: 2022-10-10 16:28:10
+ * @FilePath: /super-page-web/vite.config.ts
  */
 import { fileURLToPath, URL } from "node:url";
 
@@ -26,5 +26,21 @@ export default defineConfig({
     open: true,
     port: 9527,
     host: "0.0.0.0",
+  },
+  build: {
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
+        },
+      },
+    },
   },
 });
