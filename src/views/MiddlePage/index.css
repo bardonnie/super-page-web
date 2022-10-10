@@ -1,0 +1,171 @@
+.page-title {
+  text-align: center;
+  font-size: 16px;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; */
+  padding: 10px;
+  /* line-height: 44px; */
+  /* width: 300px; */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.page-main {
+  padding: 10px;
+}
+
+.picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.08);
+}
+
+.product-info {
+  margin-top: 10px;
+  background: white;
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.08);
+}
+
+.pay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.rmb {
+  margin-left: 6px;
+}
+
+/* 标题 */
+.title {
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 付款价 */
+.price {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  color: #ea4d46;
+}
+
+.price-tip {
+  font-size: 16px;
+  color: rgb(23, 23, 23);
+  padding: 2px 5px;
+  margin-right: 0px;
+  border-radius: 4px;
+  /* border: 1px solid #ff283b; */
+}
+
+/* 返利 */
+.bonus {
+  font-size: 20px;
+  color: #ea4d46;
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-weight: bold;
+  /* box-shadow: 0px 0px 10px 5px rgba(255, 0, 0, 0.1); */
+  /* font-family: "DIN-MediumItalic"; */
+}
+
+.bonus-tip {
+  font-size: 16px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  color: #666;
+}
+
+/* 下单 */
+.buy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.go-buy {
+  text-decoration: none;
+  width: 200px;
+  height: 50px;
+  background: #ff283b;
+  border-radius: 100px;
+  margin: 20px auto 10px;
+  color: #fff;
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* tkl */
+.tkl {
+  border-radius: 6px;
+  overflow: hidden;
+  height: 64px;
+  margin-top: 6px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.tkl-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.tkl-front {
+  display: flex;
+  margin: 10px 24px 10px 16px;
+  line-height: 44px;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* tips */
+.tips {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: gray;
+}
+
+/* common */
+.gradient {
+  color: #fff;
+  background: linear-gradient(to right, #ed835f, #ea4144); /* 标准的语法 */
+  background: -webkit-linear-gradient(
+    left,
+    #ed835f,
+    #ea4144
+  ); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(
+    right,
+    #ed835f,
+    #ea4144
+  ); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(
+    right,
+    #ed835f,
+    #ea4144
+  ); /* Firefox 3.6 - 15 */
+}
