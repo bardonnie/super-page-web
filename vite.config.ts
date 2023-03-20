@@ -2,7 +2,7 @@
  * @Author: Donnie
  * @LastEditors: Donnie
  * @Date: 2022-10-10 14:46:20
- * @LastEditTime: 2022-10-10 16:28:10
+ * @LastEditTime: 2022-10-19 11:26:39
  * @FilePath: /super-page-web/vite.config.ts
  */
 import { fileURLToPath, URL } from "node:url";
@@ -10,6 +10,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
   },
   // root: "api3",
   base: "api3",
+  // base: "public",
   server: {
     open: true,
     port: 9527,
@@ -31,6 +33,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
+        // publicPath: "/public/dist/",
+        // path: path.join(__dirname, "../public/dist"),
         manualChunks(id) {
           if (id.includes("node_modules")) {
             return id

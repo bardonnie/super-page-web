@@ -42,6 +42,7 @@ import UseClipboard from "vue-clipboard3";
 import { reactive } from "vue";
 import { Toast } from "vant";
 import "vant/es/toast/style";
+import TaobaoImage from "../../assets/taobao.png";
 
 const { toClipboard } = UseClipboard();
 
@@ -120,7 +121,7 @@ export default {
       await toClipboard(this.tkl);
       Toast({
         message: "复制成功\n快去打开淘宝",
-        icon: "https://qiniu.blockss.com/taobao.png",
+        icon: TaobaoImage,
         duration: 2000,
       });
     },
