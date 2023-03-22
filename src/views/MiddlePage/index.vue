@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import Iconv from "iconv-lite";
 import UseClipboard from "vue-clipboard3";
+import axios from "axios";
 import { reactive } from "vue";
 import { Toast } from "vant";
 import "vant/es/toast/style";
@@ -61,23 +61,9 @@ export default {
   components: {},
   mounted() {
     const url = decodeURI(window.location.href);
-    const paraString = url.substring(url.indexOf("key=") + 4, url.length);
-    if (paraString.length) {
-      const base64 = atob(paraString) as any;
-      let iconv = Iconv as any;
-      iconv.skipDecodeWarning = true;
-      const gbk = Iconv.decode(base64, "gbk");
-      const params = JSON.parse(gbk);
+    const key = url.substring(url.indexOf("key=") + 4, url.length);
 
-      this.picture = params["picture"];
-      this.title = params["Title"];
-      this.pay = params["Pay"];
-      this.bonus = params["bonus"];
-      this.url = params["url"];
-
-      const number = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
-      this.tkl = `CZ${number} ￥${params["tkl"]}￥/`;
-    }
+    this.loadData(key);
 
     document.addEventListener("touchstart", function (event) {
       if (event.touches.length > 1) {
@@ -117,6 +103,20 @@ export default {
     );
   },
   methods: {
+    async loadData(key: string) {
+      const info = await axios.post("/api/tkl", {
+        key,
+      });
+      const { data } = info;
+      this.picture = data["picture"];
+      this.title = data["Title"];
+      this.pay = data["Pay"];
+      this.bonus = data["bonus"];
+      this.url = data["url"];
+
+      const number = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+      this.tkl = `CZ${number} ￥${data["tkl"]}￥/`;
+    },
     async copyTKL() {
       await toClipboard(this.tkl);
       Toast({

@@ -2,8 +2,8 @@
  * @Author: Donnie
  * @LastEditors: Donnie
  * @Date: 2022-08-29 18:15:12
- * @LastEditTime: 2022-10-10 11:17:31
- * @FilePath: /my-page/src/router/index.ts
+ * @LastEditTime: 2023-03-22 16:08:06
+ * @FilePath: /super-page-web/src/router/index.ts
  */
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";

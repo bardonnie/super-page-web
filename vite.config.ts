@@ -2,7 +2,7 @@
  * @Author: Donnie
  * @LastEditors: Donnie
  * @Date: 2022-10-10 14:46:20
- * @LastEditTime: 2022-10-19 11:26:39
+ * @LastEditTime: 2023-03-22 15:56:24
  * @FilePath: /super-page-web/vite.config.ts
  */
 import { fileURLToPath, URL } from "node:url";
@@ -17,17 +17,26 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@": fileURLToPath(new URL("./src", import.meta.url).href),
       stream: require.resolve("stream-browserify"),
     },
   },
   // root: "api3",
-  base: "api3",
-  // base: "public",
+  base: "page",
+  // base: "/public/",
+  // base: "http://127.0.0.1:7001/public/",
+  // base: "./",
   server: {
     open: true,
     port: 9527,
     host: "0.0.0.0",
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:7001",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
   build: {
     chunkSizeWarningLimit: 500,
